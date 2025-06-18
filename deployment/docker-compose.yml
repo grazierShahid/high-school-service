@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: school-postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=grazier
+      - POSTGRES_PASSWORD=peranaichill
+      - POSTGRES_DB=high_school
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - school-network
+
+volumes:
+  pgdata:
+
+networks:
+  school-network:
