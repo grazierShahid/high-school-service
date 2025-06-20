@@ -1,6 +1,11 @@
 package services
 
-import "github.com/jackc/pgx/v5/pgxpool"
+import (
+	"context"
+	"fmt"
+
+	"github.com/jackc/pgx/v5/pgxpool"
+)
 
 type UserService struct {
 	db *pgxpool.Pool
@@ -9,5 +14,12 @@ type UserService struct {
 func NewUserService(db *pgxpool.Pool) *UserService {
 	return &UserService{
 		db: db,
+	}
+}
+
+func (s *UserService) Ping(ctx context.Context) {
+	err := s.db.Ping(ctx)
+	if err != nil {
+		fmt.Printf("not ping: %v", err)
 	}
 }

@@ -8,6 +8,7 @@ func LoadConfig() (*Config, error) {
 	cfg := &Config{
 		BaseConfig: LoadBaseConfig(),
 	}
+
 	return cfg, nil
 }
 
