@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/grazierShahid/high-school-management-system/internal/config"
@@ -22,8 +23,13 @@ func NewUserHandler(cfg *config.Config, userService *services.UserService) *User
 }
 
 func (h *UserHandler) CheckHealth(w http.ResponseWriter, r *http.Request) {
+	h.userService.Ping(r.Context())
+
 	w.WriteHeader(http.StatusAccepted)
-	json.NewDecoder(r.Body).Decode(map[string]string{
+	err := json.NewEncoder(w).Encode(map[string]string{
 		"status": "success",
 	})
+	if err != nil {
+		fmt.Printf("chill")
+	}
 }

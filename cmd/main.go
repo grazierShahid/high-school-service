@@ -38,7 +38,6 @@ func main() {
 		// TODO write logger
 		panic(fmt.Sprintf("Failed to connect to database: %v", err))
 	}
-	dbPool.Close()
 
 	// TODO write logger : db connected
 
